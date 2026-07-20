@@ -1,0 +1,535 @@
+/* Reset básico */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  color:inherit;
+}
+
+ul{
+  list-style:none;
+}
+
+button{
+  font:inherit;
+}
+
+/* Tipografía y fondo base del body */
+body{
+  font-family:'Inter', 'Segoe UI', sans-serif;
+  background:#f4f4f4;
+  color:#1a1a1a;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3{
+  font-family:'Fraunces', 'Georgia', serif;
+  color:#1a1a1a;
+  font-weight:600;
+  letter-spacing:-.01em;
+}
+
+p{
+  color:#555555;
+}
+
+/* Utilidades reutilizables */
+.eyebrow{
+  font-family:'IBM Plex Mono', 'Courier New', monospace;
+  font-size:.76rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#2e7d32;
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  margin-bottom:1rem;
+}
+
+.eyebrow::before{
+  content:"";
+  width:24px;
+  height:2px;
+  background:#61eb21;
+  display:inline-block;
+}
+
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Estructura de sección reutilizable */
+.section{
+  max-width:1120px;
+  margin:0 auto;
+  padding:4.5rem 2rem;
+}
+
+.section-head{
+  max-width:600px;
+  margin-bottom:2.5rem;
+}
+.section-head h2{
+  font-size:1.9rem;
+}
+
+/* BARRA DE NAVEGACIÓN */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:60;
+  background:linear-gradient(90deg, #9eaf05, #61eb21);
+  box-shadow:0px 4px 12px rgba(0,0,0,.3);
+  transition:box-shadow .3s ease, background .3s ease;
+}
+
+.site-header.scrolled{
+  box-shadow:0 8px 26px rgba(0,0,0,.45);
+  background:linear-gradient(90deg, #86960a, #4bbf19);
+}
+
+.header-inner{
+  max-width:1220px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:.9rem 2rem;
+  position:relative;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  text-decoration:none;
+}
+
+.logo-img{
+  width:38px;
+  height:38px;
+  object-fit:contain;
+  transition:transform .35s ease;
+}
+
+.brand:hover .logo-img{
+  transform:rotate(-8deg) scale(1.06);
+}
+
+.brand-name{
+  font-family:'Fraunces', 'Georgia', serif;
+  font-size:1.3rem;
+  font-weight:600;
+  color:#fff;
+}
+
+.brand-accent{
+  color:#ffeb3b;
+}
+
+.nav-links{
+  display:flex;
+  gap:2.1rem;
+}
+
+.nav-links a{
+  color:#ffffff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:.94rem;
+  position:relative;
+  padding:.35rem 0;
+  transition:color .25s ease;
+}
+
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  right:50%;
+  bottom:-6px;
+  height:3px;
+  background:#ffeb3b;
+  border-radius:2px;
+  transition:left .25s ease, right .25s ease;
+}
+
+.nav-links a:hover{
+  color:#ffeb3b;
+}
+
+.nav-links a:hover::after{
+  left:0; right:0;
+}
+
+.nav-links a.active{
+  color:#fff;
+}
+
+.nav-links a.active::after{
+  left:0; right:0;
+}
+
+.nav-toggle{
+  display:none;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:1.5rem;
+  cursor:pointer;
+  line-height:1;
+}
+
+@media (max-width:860px){
+  .nav-links{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:#56ab2f;
+    flex-direction:column;
+    gap:0;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+
+  .nav-links.show{
+    max-height:420px; padding:.5rem 2rem 1rem;
+  }
+
+  .nav-links a{
+    padding:.85rem 0;
+    border-bottom:1px solid rgba(255,255,255,.15);
+  }
+
+  .nav-toggle{
+    display:block
+   }
+}
+
+/* PIE DE PÁGINA */
+.site-footer{
+  position:relative;
+  background:
+    radial-gradient(circle at top right, rgba(97,235,33,.22), transparent 55%),
+    linear-gradient(180deg, rgba(8,10,14,.93), rgba(8,10,14,.97)),
+    url('./img/fondo (1).jpg') center/cover no-repeat;
+  border-top:1px solid rgba(97,235,33,.25);
+}
+
+.footer-link:hover{
+  color:#61eb21 !important;
+}
+
+.footer-social-link img{
+  opacity:.85;
+  transition:opacity .25s, transform .25s;
+}
+
+.footer-social-link:hover img{
+  opacity:1;
+  transform:translateY(-3px);
+}
+
+/* Botones */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  font-family:'Inter', 'Segoe UI', sans-serif;
+  font-weight:600;
+  font-size:.95rem;
+  padding:.85rem 1.7rem;
+  border-radius:999px;
+  text-decoration:none;
+  transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+  cursor:pointer;
+  border:none;
+}
+
+.btn-primary{
+  background:#61eb21;
+  color:#1a1a1a;
+  box-shadow:0 14px 28px -14px rgba(97,235,33,.55);
+}
+
+.btn-primary:hover{
+  background:#4bbf19;
+  transform:translateY(-2px);
+  box-shadow:0 18px 34px -14px rgba(97,235,33,.7);
+}
+
+.btn-ghost{
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  border:1.5px solid rgba(255,255,255,.35);
+  backdrop-filter:blur(4px);
+}
+
+.btn-ghost:hover{
+  border-color:#61eb21;
+  color:#61eb21;
+  background:rgba(97,235,33,.08);
+}
+
+.btn-outline{
+  background:transparent;
+  color:#2e7d32;
+  border:1.5px solid #2e7d32;
+}
+
+.btn-outline:hover{
+  background:#2e7d32;
+  color:#fff;
+}
+
+/* ESTILOS PROPIOS DE ESTA PÁGINA (CONTACTO) */
+
+.contact-section{
+  padding:4.5rem 2rem 6rem;
+  max-width:1220px;
+  margin:0 auto;
+}
+
+.contact-container{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 28px 54px -30px rgba(20,23,31,.4);
+}
+
+/* Panel izquierdo */
+.contact-info{
+  position:relative;
+  color:#fff;
+  padding:3.6rem 3.2rem;
+  overflow:hidden;
+  /* Misma técnica de capas que el hero y el footer: resplandor de marca +
+     oscurecido + fotografía de fondo, para mantener el texto blanco legible. */
+  background:
+    radial-gradient(circle at 10% 100%, rgba(97,235,33,.28), transparent 55%),
+    linear-gradient(180deg, rgba(8,10,14,.85), rgba(8,10,14,.92)),
+    url('./img/fondo (1).jpg') center/cover no-repeat; 
+}
+
+.contact-info .signal{
+  position:absolute;
+  bottom:-40px;
+  left:-40px;
+  width:340px;
+  height:340px;
+  pointer-events:none;
+  opacity:.9;
+}
+
+.contact-info .eyebrow{
+  color:#61eb21;
+  position:relative;
+  z-index:1;
+}
+
+.contact-info .eyebrow::before{
+  background:#fff;
+}
+
+.contact-info h1{
+  color:#fff;
+  font-size:clamp(1.8rem, 3.4vw, 2.3rem);
+  line-height:1.18;
+  margin-bottom:1.2rem;
+  position:relative;
+  z-index:1;
+}
+
+.contact-info .lead{
+  color:rgba(255,255,255,.75);
+  font-size:1rem;
+  max-width:420px;
+  margin-bottom:2.4rem;
+  position:relative;
+  z-index:1;
+}
+
+/* Lista de datos de contacto */
+.info-items{
+  display:flex;
+  flex-direction:column;
+  gap:1.4rem;
+  margin-bottom:2.2rem;
+  position:relative;
+  z-index:1;
+}
+
+.info-item{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+
+.info-icon{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:rgba(97,235,33,.18);
+  font-size:1.15rem;
+  flex-shrink:0;
+  transition:background .25s ease, transform .25s ease;
+}
+
+.info-item:hover .info-icon{
+  background:rgba(97,235,33,.32);
+  transform:scale(1.06);
+}
+
+.info-icon img{
+  width:20px;
+  height:20px;
+  object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+
+.info-label{
+  display:block;
+  font-family:'IBM Plex Mono', 'Courier New', monospace;
+  font-size:.72rem;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  margin-bottom:.15rem;
+}
+
+.info-item a, .info-item span{
+  color:#fff;
+  text-decoration:none;
+  font-size:.98rem;
+}
+
+.info-item a:hover{
+  color:#61eb21;
+}
+
+.info-social{
+  display:flex;
+  gap:1rem;
+  position:relative;
+  z-index:1;
+}
+
+.info-social img{
+  width:22px;
+  filter:brightness(0) invert(1);
+  opacity:.8;
+  transition:opacity .25s, transform .25s;
+}
+
+.info-social a:hover img{
+  opacity:1;
+  transform:translateY(-3px);
+}
+
+/* Panel derecho (formulario, fondo blanco) */
+.contact-form-container{
+  background:#ffffff;
+  padding:3.6rem 3.2rem;
+}
+
+.contact-form-container h2{
+  font-size:1.5rem;
+  margin-bottom:1.6rem;
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:1.3rem;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:.5rem;
+}
+
+.form-group label{
+  font-size:.85rem;
+  font-weight:600;
+  color:#242c1c;
+}
+
+.form-group input, .form-group textarea{
+  padding:.85rem 1rem;
+  border:1.5px solid #e0e0e0;
+  border-radius:8px;
+  font-size:.96rem;
+  font-family:'Inter', 'Segoe UI', sans-serif;
+  background:#f4f4f4;
+  transition:border-color .25s ease, box-shadow .25s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus{
+  outline:none;
+  border-color:#2e7d32;
+  box-shadow:0 0 0 3px rgba(46,125,50,.15);
+}
+
+.form-group textarea{
+  resize:vertical;
+  min-height:110px;
+}
+
+.btn-submit{
+  width:100%;
+  justify-content:center;
+  margin-top:.3rem;
+}
+
+/* Mensaje de confirmación tras enviar el formulario (lo activa main.js) */
+.form-feedback{
+  font-size:.9rem;
+  color:#2e7d32;
+  font-weight:600;
+  opacity:0;
+  height:0;
+  transition:opacity .3s ease;
+}
+
+.form-feedback.show{
+  opacity:1;
+  height:auto;
+  margin-top:.2rem;
+}
+
+@media (max-width:920px){
+  .contact-container{
+    grid-template-columns:1fr;
+  }
+
+  .contact-info, .contact-form-container{
+    padding:2.6rem;}
+}
